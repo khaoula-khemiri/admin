@@ -1,0 +1,57 @@
+.feautredinfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  gap: 30px;
+}
+
+.padge {
+  flex: 1;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.padge:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.padgeTitle {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.padgeMoneyContainer {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+}
+
+.padgeMoney {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.padgeMoneyIncrease {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  font-size: 15px;
+  gap: 5px;
+}
+
+.padgeIcon {
+  font-size: 14px !important;
+  color: red;
+}
+
+.positive {
+  color: green;
+}
+
+.padgeCommentaire {
+  font-size: 15px;
+  color: gray;
+}

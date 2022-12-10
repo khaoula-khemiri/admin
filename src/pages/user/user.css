@@ -1,0 +1,150 @@
+.user {
+  flex: 4;
+  padding: 20px;
+}
+
+.userTitleContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.userTitle {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.userAddButton {
+  font-size: 18px;
+  color: white;
+  background-color: rgb(28, 113, 97);
+  border: none;
+  border-radius: 10px;
+  padding: 5px 25px;
+  cursor: pointer;
+}
+.userContainer {
+  display: flex;
+  gap: 25px;
+  padding: 20px 0px;
+}
+
+.userShow {
+  flex: 1;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.userShowTop {
+  display: flex;
+  gap: 20px;
+}
+
+.userShowImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userShowTopTitle {
+  display: flex;
+  flex-direction: column;
+}
+
+.userShowUsername {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.userShowuserTitle {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.userShowBottom {
+  padding-top: 20px;
+}
+
+.userShowBottomTitle {
+  font-weight: 600;
+  color: grey;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+.userShowBottomInfo {
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.userShowInfoTitle {
+  font-size: 16px;
+}
+
+.userUpdate {
+  flex: 2;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.userUpdateTitle {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.userUpdateForm {
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userUpdateItem {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.userUpdateLabel {
+  font-weight: 600;
+}
+
+.userUpdateInput {
+  border: none;
+  border-bottom: 1px solid gray;
+  height: 30px;
+  width: 250px;
+  font-size: 14px;
+}
+
+.userUpdateRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.userUpdateUpload {
+  display: flex;
+  align-items: center;
+}
+
+.userUpdateImg {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.userUpdateIcone {
+  cursor: pointer;
+}
+
+.userUpdateButton {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  background-color: darkblue;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+}

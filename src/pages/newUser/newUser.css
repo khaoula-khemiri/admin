@@ -1,0 +1,55 @@
+.newUser {
+  flex: 4;
+  padding: 20px;
+}
+
+.newUserTitle {
+  padding-bottom: 20px;
+  font-size: 35px;
+}
+.newUserForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.newUserItem {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  width: 40%;
+  margin-right: 20px;
+}
+
+.newUserItemLabel {
+  font-size: 18px;
+  color: gray;
+  padding-bottom: 10px;
+}
+
+.newUserItemInput {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  border: 1px solid gray;
+}
+
+.newUserItemInputContainer {
+  display: flex;
+  gap: 9px;
+  font-size: 18px;
+  color: #555;
+}
+
+.newUserItemSubmit {
+  border: none;
+  margin-top: 15px;
+  padding: 5px 20px;
+  background-color: darkblue;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 200px;
+  height: 40px;
+}
