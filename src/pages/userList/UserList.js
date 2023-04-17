@@ -98,7 +98,7 @@ const UserList = () => {
         disableSelectionOnClick
         rows={users}
         columns={columns}
-        pageSize={7}
+        pageSize={8}
         getRowId={(row) => row._id}
         rowsPerPageOptions={[5]}
         checkboxSelection
