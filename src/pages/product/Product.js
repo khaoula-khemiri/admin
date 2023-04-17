@@ -169,6 +169,11 @@ export default function Product() {
               <span className="productInfoKey">in stock:</span>
               <span className="productInfoValue">{product.inStock ? "yes" : "no"}</span>
             </div>
+
+            <div className="productInfoItem">
+              <span className="productInfoKey">likes:</span>
+              <span className="productInfoValue">{product.likes}</span>
+            </div>
           </div>
         </div>
       </div>

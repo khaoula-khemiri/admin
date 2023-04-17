@@ -2,6 +2,7 @@ import "./newUser.css"
 import { React, useState, useEffect } from 'react';
 import { publicRequest } from "../../requestMethodes";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import BeatLoader from "react-spinners/BeatLoader";
 import app from "../../firebase";
 
 const NewUser = () => {
@@ -10,16 +11,19 @@ const NewUser = () => {
   const [email, setEmail] = useState("")
   const [file, setFile] = useState(null);
   const [error, setError] = useState(false)
-
+  const [loading, setLoading] = useState(false);
+  const [sucess, setSucess] = useState()
 
   const register = async (user) => {
     try {
       const res = await publicRequest.post("/auth/register", user)
       console.log(res);
-    
+      setLoading(false);
+      setSucess(true)
     } catch (err) {
       setError(true)
       console.log("err" + err);
+      setSucess(false)
     }
   }
   const handleClick = (e) => {
@@ -38,6 +42,7 @@ const NewUser = () => {
         // Observe state change events such as progress, pause, and resume
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setLoading(true);
         console.log('Upload is ' + progress + '% done');
         switch (snapshot.state) {
           case 'paused':
@@ -72,7 +77,7 @@ const NewUser = () => {
             username
           </label>
 
-          <input className="newUserItemInput" type="text"  onChange={(e) => { setUsername(e.target.value)}}/>
+          <input className="newUserItemInput" type="text" onChange={(e) => { setUsername(e.target.value) }} />
         </div>
 
         <div className="newUserItem">
@@ -80,7 +85,7 @@ const NewUser = () => {
             Full Name
           </label>
 
-          <input className="newUserItemInput" type="text"  />
+          <input className="newUserItemInput" type="text" />
         </div>
 
         <div className="newUserItem">
@@ -88,7 +93,7 @@ const NewUser = () => {
             Email
           </label>
 
-          <input className="newUserItemInput" type="email"  onChange={(e) => { setEmail(e.target.value)}}/>
+          <input className="newUserItemInput" type="email" onChange={(e) => { setEmail(e.target.value) }} />
         </div>
 
         <div className="newUserItem">
@@ -96,14 +101,22 @@ const NewUser = () => {
             Password
           </label>
 
-          <input className="newUserItemInput" type="password"  onChange={(e) => { setPassword(e.target.value)}}/>
+          <input className="newUserItemInput" type="password" onChange={(e) => { setPassword(e.target.value) }} />
         </div>
-        <div  className="newUserItem">
+        <div className="newUserItem">
           <label className="newUserItemLabel">Image</label>
-          <input type="file" id="file" onChange={e => setFile(e.target.files[0])}/>
+          <input type="file" id="file" onChange={e => setFile(e.target.files[0])} />
         </div>
-        <button className="newUserItemSubmit" type="submit" value="Create"  onClick={handleClick}>Create</button>
-
+        <button className="newUserItemSubmit" type="submit" value="Create" onClick={handleClick}>Create</button>
+        {loading &&
+          <BeatLoader
+            color={'#00008B'}
+            loading={loading}
+            size={5}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />}
+        {sucess && <div>Create successfully </div>}
 
       </form>
 

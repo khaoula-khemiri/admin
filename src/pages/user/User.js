@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { userRequest } from "../../requestMethodes"
 import moment from 'moment';
+import BeatLoader from "react-spinners/BeatLoader";
 
 const User = () => {
   const location = useLocation();
@@ -15,7 +16,8 @@ const User = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [file, setFile] = useState(null);
-
+  const [loading, setLoading] = useState(false);
+  const [sucess, setSucess] = useState()
 
   useEffect(() => {
     const getUser = async () => {
@@ -24,7 +26,6 @@ const User = () => {
         setUser(res.data)
       } catch (err) {
         console.log(err.response.data);
-
       }
     };
     getUser();
@@ -35,9 +36,11 @@ const User = () => {
     try {
       const res = await userRequest.put("/users/" + id, input);
       setUser(res.data)
+      setLoading(false);
+      setSucess(true)
     } catch (err) {
       console.log(err.response.data);
-
+      setSucess(false)
     }
   }
 
@@ -57,6 +60,7 @@ const User = () => {
         // Observe state change events such as progress, pause, and resume
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setLoading(true);
         console.log('Upload is ' + progress + '% done');
         switch (snapshot.state) {
           case 'paused':
@@ -153,6 +157,15 @@ const User = () => {
                 <input type="file" id="file" style={{ display: "none" }} onChange={e => setFile(e.target.files[0])} />
               </div>
               <button className="userUpdateButton" onClick={handleClick}>Update</button>
+              {loading &&
+                <BeatLoader
+                  color={'#00008B'}
+                  loading={loading}
+                  size={5}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />}
+              {sucess && <div>Update successfully </div>}
             </div>
           </form>
         </div>

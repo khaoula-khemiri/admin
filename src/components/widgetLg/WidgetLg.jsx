@@ -8,7 +8,7 @@ const WidgetLg = () => {
   const [users,setUsers]=useState([])
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getOrders = async () => {
         try {
             const res = await userRequest.get("orders/" );
             setOrders(res.data);
@@ -21,9 +21,8 @@ const WidgetLg = () => {
             console.log(err.response.data);
         }
     };
-    getProducts();
+    getOrders();
 }, []); 
-console.log(users);
   const Button = ({ type }) => {
     return <button className={'widgetLgButton ' + type} >{type}</button>
   }
@@ -33,7 +32,7 @@ console.log(users);
       <table className="widgetLgTable">
         <tr className="widgetLgTr">
           <th className="widgetLgTh">
-            Customer
+            Customer ID
           </th>
 
           <th className="widgetLgTh">
@@ -51,7 +50,6 @@ console.log(users);
         
         {orders && orders.map(order=>(<tr className='widjetLgTr' key={order._id}>
           <td className='widgetLgUser'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEdJ7m3JX4JxtxKxQcsQrjEbnXSbx0Al5HYw&usqp=CAU" alt="" className='widgetLgImg' />
             <span className="widgetLgName">{order.userId}</span>
           </td>
           <td className="widgetLgDate">{order.createdAt? format(order.createdAt):"not defined"}</td>

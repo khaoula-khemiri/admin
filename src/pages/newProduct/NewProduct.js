@@ -4,11 +4,13 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiCalls"
 import { useDispatch } from "react-redux"
-
+import BeatLoader from "react-spinners/BeatLoader";
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [sucess, setSucess] = useState();
   const dispatch = useDispatch()
 
   const handlechange = (e) => {
@@ -39,6 +41,7 @@ export default function NewProduct() {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');
+        setLoading(true);
         switch (snapshot.state) {
           case 'paused':
             console.log('Upload is paused');
@@ -57,6 +60,8 @@ export default function NewProduct() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = { ...inputs, img: downloadURL, categories: cat };
           addProduct(product, dispatch)
+          setLoading(false);
+          setSucess(true)
         });
       }
     );
@@ -122,6 +127,15 @@ export default function NewProduct() {
 
         <button className="addProductButton" onClick={handleClick}>Create</button>
       </form>
+      {loading &&
+        <BeatLoader
+          color={'#00008B'}
+          loading={loading}
+          size={5}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />}
+      {sucess && <div> Create successfully </div>}
     </div>
   );
 }

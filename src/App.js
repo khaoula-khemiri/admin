@@ -24,14 +24,13 @@ function App() {
 
   return (
     <Router>
-
       {user ?
         <>
           <Topbar />
           <div className="container">
             <Sidebar />
             <Routes  >
-              <Route exact path="/" element={<Home />} />
+              <Route exact path="/" element={user ? <Home /> : <Navigate replace to="/login" />} />
               <Route exact path="/users" element={<UserList />} />
               <Route exact path="/user/:userId" element={<User />} />
               <Route exact path="/newUser" element={<NewUser />} />
@@ -42,8 +41,10 @@ function App() {
             </Routes>
           </div>
         </>
-        : <Routes  >
+        :
+        <Routes  >
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={<Navigate replace to="/login" />} />
         </Routes>
       }
     </Router>

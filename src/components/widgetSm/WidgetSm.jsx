@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const WidgetSm = () => {
  const [users,setUsers]=useState()
   useEffect(() => {
-    const getProducts = async () => {
+    const getUsers = async () => {
         try {
             const res = await userRequest.get("users/?new=true" );
             setUsers(res.data);
@@ -16,7 +16,7 @@ const WidgetSm = () => {
             console.log(err.response.data);
         }
     };
-    getProducts();
+    getUsers();
 }, []); 
 
   return (
