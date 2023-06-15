@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { useDispatch, useSelector  } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/apiCalls';
 import "./login.css"
 
@@ -25,8 +25,12 @@ const Login = () => {
           <input className='loginRightInput' type="text" placeholder='username' onChange={e => setUsername(e.target.value)} />
           <input className='loginRightInput' type="password" placeholder='password' onChange={e => setPassword(e.target.value)} />
           <button className='loginRightButton' onClick={handleClick}>LOGIN</button>
-          {err &&<span className="loginRightRegister">Some things went rong!! </span>}
-          <span className="loginRightRegister">If you don't have account Register</span>
+          {err && <span className="loginRightRegister">Some things went rong!! </span>}
+          <span className="loginRightRegister">
+            <strong>For test :</strong><br />
+            username : admin <br />
+            password : admin
+          </span>
         </div>
         <div className="loginLeft">
           <img className='loginLeftImg' src="./login.jpg" alt="" />

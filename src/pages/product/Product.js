@@ -251,6 +251,7 @@ export default function Product() {
                 <BeatLoader
                   color={'#00008B'}
                   loading={loading}
+                  height={5}
                   size={5}
                   aria-label="Loading Spinner"
                   data-testid="loader"

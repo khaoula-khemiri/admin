@@ -13,10 +13,17 @@ import moment from 'moment';
 const UserList = () => {
   const [data, setData] = useState(userRows);
   const [users, setUsers] = useState([]);
+  const BASE_URL = "https://apishop.onrender.com/api/";
+  const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+  const currentUser = user && JSON.parse(user).currentUser;
+
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await userRequest.get("users");
+        const res = await axios.create({
+          baseURL: BASE_URL,
+          headers: { token: `Bearer ${currentUser?.accessToken}` }
+        }).get("users");
         setUsers(res.data);
         console.log(res.data);
 
@@ -26,7 +33,7 @@ const UserList = () => {
     };
     getUsers();
 
-  }, []);
+  }, [user]);
 
   const handleDelete = async (id) => {
     try {
