@@ -5,10 +5,11 @@ import "./home.css";
 import { userRequest } from "../../requestMethodes"
 import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
-
+import axios from "axios"
+import { useSelector } from 'react-redux';
 const Home = () => {
   const [userStats, setUserStats] = useState([]);
-
+  const currentUser = useSelector(state => state.user.currentUser);
   const MONTHS = useMemo(
     () => [
       "Jan",
@@ -28,15 +29,19 @@ const Home = () => {
   );
 
   useEffect(() => {
+    const BASE_URL = "https://apishop.onrender.com/api/";
+    // const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+    // const currentUser = user && JSON.parse(user).currentUser;
+
     const getStats = async () => {
       try {
         const res = await axios.create({
           baseURL: BASE_URL,
           headers: { token: `Bearer ${currentUser?.accessToken}` }
         }).get("/users/stats");
-        console.log(res.data);
+
         const data = res.data.sort((a, b) => a._id - b._id)
-        console.log(data);
+
         res.data.map((item) =>
           setUserStats((prev) => [
             ...prev,
@@ -44,13 +49,13 @@ const Home = () => {
           ])
         );
       } catch (err) {
-        console.log(err.response.data);
-        console.log("err")
+        console.log(err.response);
+        console.log("err state")
       }
     };
     getStats();
 
-  }, [MONTHS]);
+  }, []);
 
   return (
     <div className="home">

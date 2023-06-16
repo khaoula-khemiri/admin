@@ -2,18 +2,26 @@ import { React, useState, useEffect } from 'react';
 import { ArrowDownward, ArrowUpward } from '@material-ui/icons'
 import { userRequest } from "../../requestMethodes"
 import "./feautredinfo.css"
-
+import axios from "axios"
 const Feautredinfo = () => {
   const [income, setIncome] = useState("")
   const [perc, setPerc] = useState(0)
+
   useEffect(() => {
     const getIncome = async () => {
+      const BASE_URL = "https://apishop.onrender.com/api/";
+      const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+      const currentUser = user && JSON.parse(user).currentUser;
       try {
-        const res = await userRequest.get("orders/income");
+        const res = await axios.create({
+          baseURL: BASE_URL,
+          headers: { token: `Bearer ${currentUser?.accessToken}` }
+        }).get("orders/income");
+
         setIncome(res.data[0].total)
         setPerc(res.data[1].total * 100 / res.data[0].total - 100)
       } catch (err) {
-        console.log(err);
+        console.log();
 
       }
     };

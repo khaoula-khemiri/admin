@@ -25,7 +25,7 @@ const UserList = () => {
           headers: { token: `Bearer ${currentUser?.accessToken}` }
         }).get("users");
         setUsers(res.data);
-        console.log(res.data);
+
 
       } catch (err) {
         console.log(err.response.data);
